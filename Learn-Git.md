@@ -91,6 +91,8 @@
 
 第一次推送`master`分支的所有内容：`git push -u origin master`。`origin`代表的是远程库。
 
+如果之前在远程仓库里新建了`README.MD`文件，会导致推送失败，要先执行拉取命令`git pull --rebase origin master`。
+
 `git remote`
 
 查看远程库信息。
