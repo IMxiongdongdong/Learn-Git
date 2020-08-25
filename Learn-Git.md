@@ -2,34 +2,34 @@
 
 `git`跟踪管理的是修改，而非文件。
 
-* 工作区：就是在电脑里能看到的目录。
-* 版本库：即隐藏目录`.git`，版本库里存了很多东西，其中最重要的就是称为`stage`或者叫`index`的暂存区，还有自动创建的第一个分支`master`以及指向`master`的一个指针叫`HEAD`。
+工作区：就是在电脑里能看到的目录。
+版本库：即隐藏目录`.git`，版本库里存了很多东西，其中最重要的就是称为`stage`或者叫`index`的暂存区，还有自动创建的第一个分支`master`以及指向`master`的一个指针叫`HEAD`。
 
 ## 1. 添加命令
 
 ### `git add`
 
-* `git add -A`
+ `git add -A`
 
   提交所有变化。
 
-* `git add -u`
+`git add -u`
 
   提交被修改和被删除的文件，不包括新文件。
 
-* `git add . `
+`git add . `
 
   提交新文件和被修改的文件，不包括被删除的文件。
 
-* `git add readme.txt`
+`git add readme.txt`
 
   提交指定文件。
 
-* `git add file1.txt`
+`git add file1.txt`
 
-* `git add file2.txt`
+`git add file2.txt`
 
-* `git add file3.txt`
+`git add file3.txt`
 
   可以同时添加几个文件。
 
@@ -37,9 +37,15 @@
 
 ### `git commit`
 
-* `git commit -m "message"`
+`git commit -m "message"`
 
   `message`代表提交说明，可以输入任何内容 。
+
+`git commit --amend`
+
+有时候提交过代码之后，发现一个地方改错了，下次提交时不想保留上一次的记录，或者上一次的`commit message`的描述有误，可以使用这个命令。
+
+想修改描述信息的话，直接键入`:i`，此时进入了输入模式，可以用键盘上下键转到描述所在的那一行，然后进行修改。修改完成后按`esc`退出编辑模式，在键入`:wq`回车退出并保存修改。
 
 ## 3. 查看状态
 
@@ -67,9 +73,11 @@
 
 ### `git reset`
 
-`HEAD`指向的版本就是当前版本，`git`允许在历史版本之间穿梭，使用命令`git reset --hard commit_id`。版本回退的速度非常快，因为`HEAD`是一个指向当前版本的指针，当回退版本时，仅仅是把`HEAD`换了指向。
+`HEAD`指向的版本就是当前版本，`git`允许在历史版本之间穿梭，使用命令`git reset --hard commit_id`。版本回退的速度非常快，因为`HEAD`是一个指向当前版本的指针，当回退版本时，仅仅是把`HEAD`换了指向。`commit_id`没必要写全，写前几位就可以了，`git`会自动去找，当然也不能致只写前一两位，因为`git`会找到多个版本号，就无法确定是哪一个了。
 
-`commit_id`没必要写全，写前几位就可以了，`git`会自动去找，当然也不能致只写前一两位，因为`git`会找到多个版本号，就无法确定是哪一个了。
+`git reset --hard`是彻底回退到某个版本，本地的源码也会变成上一个版本的内容。
+
+`git reset --soft`是回退到某个版本，只回退了`commit`的信息，如果还要提交，直接`commit`即可。
 
 用`git log`查看提交历史，以便确定回退到哪个版本。
 
