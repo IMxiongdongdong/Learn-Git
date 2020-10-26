@@ -145,6 +145,11 @@
 
 * 利用码云加速克隆：在码云上选择从`github`导入仓库，然后克隆码云的项目地址，最后将本地的项目关联到原来的项目上去，打开`.git`文件夹中的`config`将`[remote"origin"].url`字段重新关联到原来的`github`项目地址。
 
+`git pull`与`git fetch`在功能上是大致相同的，都是起到了更新代码的作用。
+
+* `git fetch`相当于从远程获取最新版本到本地，不会自动`merge`。
+* `git pull`相当于是从远程获取最新版本并`merge`到本地。
+
 ## 11. 克隆
 
 通过`ssh`支持的原生`git`协议速度最快。
@@ -153,11 +158,15 @@
 
 `git branch dev`
 
-创建分支。
+创建名字叫做`dev`的分支。
 
 `git checkout dev`
 
-切换到分支。
+切换到分支`dev`。
+
+`git branch -m dev dev1`
+
+更改分支名称`dev`为`dev1`。
 
 `git branch`
 
@@ -173,13 +182,33 @@
 
 `git log --graph`查看分支合并图。
 
-通常合并分支时，如果可能`git`会采用`fast forward`模式，但这种模式下，删除分支后会丢掉分支信息。
+通常合并分支时，如果可能`git`会采用`fast forward`模式，但这种模式下，删除分支后会丢掉分支信息。`fast forward`是快进合并，是最理想的合并。
 
 强制禁用`fast forward`模式，`git`会在`merge`时生成一个新的`commit`，这样从分支历史上就可以看出分支信息。
 
 `git merge --no-ff -m "merge with no-ff" dev`
 
 `--no-ff`参数，表示禁用`fast forward`模式。
+
+### `git diff`
+
+用来进行比较文件的不同，即比较文件在暂存区和工作区的差异。显示已写入暂存区和已经被修改但尚未写入暂存区文件的区别。
+
+`git diff`
+
+尚未缓存的改动。
+
+`git diff --cached`
+
+查看已缓存的改动。
+
+`git diff HEAD`
+
+查看已缓存的与未缓存的所有改动。
+
+`git diff --stat`
+
+显示摘要而非整个`diff`。
 
 ## 13. 储存现场
 
